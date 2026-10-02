@@ -44,6 +44,7 @@ jobs:
           reports/*.xml
     - name: Upload static files as artifact
       id: upload
+      if: (!cancelled())
       uses: actions/upload-pages-artifact@v3 
       with:
         path: public/
