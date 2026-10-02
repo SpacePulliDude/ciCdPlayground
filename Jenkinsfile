@@ -32,7 +32,9 @@ pipeline {
         }
 
         stage('report results'){
-            junit allowEmptyResults: true, testResults: './reports/*.xml'
+            stpes{
+                junit allowEmptyResults: true, testResults: './reports/*.xml'
+            }
         }
 
         stage('deploy') {
