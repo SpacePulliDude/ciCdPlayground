@@ -31,12 +31,6 @@ pipeline {
             }
         }
 
-        stage('report results'){
-            always{
-                junit allowEmptyResults: true, testResults: '**/reports/*.xml'
-            }
-        }
-
         stage('deploy') {
             steps {
                 s3Upload consoleLogLevel: 'INFO', 
@@ -61,6 +55,12 @@ pipeline {
                     profileName: 'role-based-access', 
                     userMetadata: []
             }
+        }
+    }
+
+    post{
+        always{
+                junit allowEmptyResults: true, testResults: '**/reports/*.xml'
         }
     }
 }
