@@ -1,3 +1,5 @@
+environment { TERM = 'xterm'; NO_COLOR = '1' }
+
 pipeline {
     agent any
     tools {
@@ -25,9 +27,12 @@ pipeline {
         
         stage('e2e test') {
             steps {
-                sh 'yarn build'
                 sh 'yarn test:e2e'
             }
+        }
+
+        stage('report results'){
+            junit allowEmptyResults: true, testResults: './reports/*.xml'
         }
 
         stage('deploy') {
