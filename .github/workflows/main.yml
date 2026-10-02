@@ -42,9 +42,14 @@ jobs:
       with:
         files: |
           reports/*.xml
+    - name: Upload static files as artifact
+      id: upload
+      uses: actions/upload-pages-artifact@v3 
+      with:
+        path: public/
     - name: Deploy to GitHub Pages
       id: deployment
       if: (!cancelled())
-      uses: actions/deploy-pages@v4 # or specific "vX.X.X" version tag for this action
+      uses: actions/deploy-pages@v4
 
 
