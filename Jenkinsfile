@@ -32,7 +32,7 @@ pipeline {
         }
 
         stage('report results'){
-            stpes{
+            steps{
                 junit allowEmptyResults: true, testResults: './reports/*.xml'
             }
         }
