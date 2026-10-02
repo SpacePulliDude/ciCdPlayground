@@ -12,10 +12,16 @@ permissions:
   contents: read
   pages: write
 
+
+
 jobs:
   build:
 
     runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
     # Github actions have Node and Yarn already set-up by default
@@ -36,3 +42,8 @@ jobs:
       with:
         files: |
           reports/*.xml
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4 # or specific "vX.X.X" version tag for this action
+
+
